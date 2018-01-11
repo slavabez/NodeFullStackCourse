@@ -9,7 +9,7 @@ yarn-error.log*
 
 # secret keys
 client_id.json
-config/keys.js
+config/dev.js
 
 # Runtime data
 pids
