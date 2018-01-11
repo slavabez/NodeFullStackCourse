@@ -1,7 +1,29 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+require('./models/User');
 require('./services/passport');
+const { mongoURI, cookieKey } = require('./config/keys');
+
+mongoose.Promise = global.Promise;
+mongoose.connection.openUri(mongoURI)
+    .on('error', (error) => {
+        console.warn('Warning: ', error)
+    });
 
 const app = express();
+
+app.use(
+    cookieSession({
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        keys: [cookieKey]
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // Setting up Auth routes for google
 require('./routes/authRoutes')(app);
