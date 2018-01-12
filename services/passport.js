@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const keys = require('../config/keys');
 const mongoose = require('mongoose');
 
@@ -30,5 +31,28 @@ passport.use(new GoogleStrategy({
         done(null, newUser);
     }
 ));
+
+passport.use(new LocalStrategy(
+    async (email, password, done) => {
+        try {
+            const user = await User.findOne({email});
+            if (!user) {
+                return done(null, false, { message: 'No users with such email' })
+            }
+            if (!verifyPassword(password, user)){
+
+            }
+
+        } catch (err) {
+            console.warn(err);
+        }
+
+
+    }
+));
+
+const verifyPassword = (password, user) => {
+    // TODO
+};
 
 module.exports = passport;
