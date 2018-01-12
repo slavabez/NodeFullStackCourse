@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 
 // Reducers
 import reducers from './reducers';
@@ -11,7 +11,8 @@ import reducers from './reducers';
 import App from './components/App';
 
 // Styles
-import './styles/preset.css';
+// import './styles/preset.css';
+import 'materialize-css/dist/css/materialize.min.css';
 
 // Setup redux and reducers
 const initialState = {};
@@ -22,6 +23,6 @@ const store = createStore(
 );
 
 ReactDOM.render(
-    <Provider store={store}><App /></Provider>,
+    <Provider store={store}><App/></Provider>,
     document.getElementById('react_element')
 );
