@@ -5,14 +5,17 @@ const userSchema = new Schema({
     googleId: String,
     // google/email or any other future ones
     authType: String,
-    email: String,
-    password: String,
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        select: false
+    },
     fullName: String,
     nickName: String
 });
 
 mongoose.model('users', userSchema);
-
-module.exports.createUser = (newUser, callback) => {
-
-};

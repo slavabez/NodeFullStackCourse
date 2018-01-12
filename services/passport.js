@@ -1,4 +1,5 @@
 const passport = require('passport');
+const bcrypt = require('bcryptjs');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const keys = require('../config/keys');
@@ -39,20 +40,21 @@ passport.use(new LocalStrategy(
             if (!user) {
                 return done(null, false, { message: 'No users with such email' })
             }
-            if (!verifyPassword(password, user)){
-
+            const correctPass = await verifyPassword(password, user);
+            if (!correctPass){
+                return done(null, false, { message: 'Incorrect password' })
+            } else {
+                return done(null, user);
             }
-
         } catch (err) {
             console.warn(err);
+            return done(err);
         }
-
-
     }
 ));
 
-const verifyPassword = (password, user) => {
-    // TODO
+ const verifyPassword = async (password, user) => {
+     return await bcrypt.compare(password, user.password);
 };
 
 module.exports = passport;

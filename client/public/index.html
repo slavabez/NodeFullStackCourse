@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
@@ -20,21 +20,60 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
-  </head>
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="react_element"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+</head>
+<body>
+<noscript>
+    You need to enable JavaScript to run this app.
+</noscript>
+<div id="react_element"></div>
+<div class="container">
+    <form action="/auth/email/login" method="post">
+        <h2>Login</h2>
+        <div>
+            <label>
+                Username:
+                <input type="text" name="username"/>
+            </label>
+        </div>
+        <div>
+            <label>Password:
+                <input type="password" name="password"/>
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="Log In"/>
+        </div>
+    </form>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <form action="/auth/email/register" method="post">
+        <h2>Register</h2>
+        <div>
+            <label>Full Name:
+                <input type="text" name="full_name" value="Slava B">
+            </label>
+            <label>Email:
+                <input type="email" name="email" value="bezgachev@gmail.com" />
+            </label>
+            <label>Password:
+                <input type="password" name="pass_1" value="star">
+            </label>
+            <label>Confirm password:
+                <input type="password" name="pass_2" value="star">
+            </label>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</div>
+<!--
+  This HTML file is a template.
+  If you open it directly in the browser, you will see an empty page.
+
+  You can add webfonts, meta tags, or analytics to this file.
+  The build step will place the bundled scripts into the <body> tag.
+
+  To begin the development, run `npm start` or `yarn start`.
+  To create a production bundle, use `npm run build` or `yarn build`.
+-->
+</body>
 </html>
