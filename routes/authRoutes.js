@@ -9,7 +9,12 @@ module.exports = (app) => {
         scope: ['profile', 'email']
     }));
 
-    app.get('/auth/google/callback', passport.authenticate('google'));
+    app.get(
+        '/auth/google/callback',
+        passport.authenticate('google'),
+        (req, res) => {
+            res.redirect('/');
+        });
 
     // Register new user
     app.post('/auth/email/register', async (req, res) => {

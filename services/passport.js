@@ -28,7 +28,13 @@ passport.use(new GoogleStrategy({
         if (user) {
             return done(null, user);
         }
-        const newUser = await new User({googleId: profile.id}).save();
+        const newUser = await new User({
+            googleId: profile.id,
+            fullName: profile.displayName,
+            email: (profile.emails[0].value) ? profile.emails[0].value : '',
+            authType: 'google',
+            nickName: profile.displayName.toLowerCase().replace(' ','_')
+        }).save();
         done(null, newUser);
     }
 ));
