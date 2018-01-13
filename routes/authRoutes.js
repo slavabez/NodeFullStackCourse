@@ -57,8 +57,7 @@ module.exports = (app) => {
         if (req.user) {
             res.send(req.user);
         } else {
-            res.status(401);
-            res.send({});
+            res.send('');
         }
     });
 };
