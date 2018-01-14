@@ -13,7 +13,7 @@ module.exports = (app) => {
         '/auth/google/callback',
         passport.authenticate('google'),
         (req, res) => {
-            res.redirect('/');
+            res.redirect('/surveys');
         });
 
     // Register new user
@@ -50,7 +50,7 @@ module.exports = (app) => {
 
     app.get('/api/logout', (req, res) => {
         req.logout();
-        res.send({});
+        res.redirect('/');
     });
 
     app.get('/api/current_user', (req, res) => {
